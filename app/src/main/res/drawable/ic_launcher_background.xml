@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Deep Midnight-to-Emerald Sky Backdrop -->
+    <path android:pathData="M0,0h108v108h-108z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="54"
+                android:startY="0"
+                android:endX="54"
+                android:endY="108"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#071018" />
+                <item android:offset="0.52" android:color="#0E2925" />
+                <item android:offset="0.78" android:color="#164E43" />
+                <item android:offset="1.0" android:color="#08141C" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Soft Moon Halo -->
+    <path
+        android:fillColor="#2622D3EE"
+        android:pathData="M74,30m-11,0a11,11 0,1 1,22 0a11,11 0,1 1,-22 0" />
+
+    <!-- Glowing Moon -->
+    <path
+        android:fillColor="#CCFBF1"
+        android:pathData="M74,30m-5.5,0a5.5,5.5 0,1 1,11 0a5.5,5.5 0,1 1,-11 0" />
+
+    <!-- Distant Mountain Range -->
+    <path
+        android:fillColor="#0D2824"
+        android:pathData="M0,66 L22,42 L44,60 L66,46 L88,62 L108,50 L108,108 L0,108 Z" />
+
+    <!-- Midground Mountain Silhouette -->
+    <path
+        android:fillColor="#08191B"
+        android:pathData="M0,74 L16,58 L38,72 L58,54 L84,74 L108,62 L108,108 L0,108 Z" />
+
+    <!-- Foreground Dark Obsidian Ridge -->
+    <path
+        android:fillColor="#050D14"
+        android:pathData="M0,84 L28,70 L54,82 L78,72 L108,84 L108,108 L0,108 Z" />
+</vector>

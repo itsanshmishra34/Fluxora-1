@@ -1,0 +1,53 @@
+/*
+ * CINEMATIC v2.0 — Section 13: Component Style Rules
+ * Every rule consumes semantic/component tokens only. Zero raw hex values.
+ */
+
+.cinematic-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-sm);
+  color: var(--fg-primary);
+}
+
+.cinematic-card:hover {
+  border-color: var(--card-hover-border);
+}
+
+.cinematic-card-elevated {
+  background-color: var(--card-elevated-bg);
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-md);
+  color: var(--fg-primary);
+}
+
+.cinematic-btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  min-height: 44px;
+}
+
+.cinematic-btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+.cinematic-btn-secondary {
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+  border: 1px solid var(--btn-secondary-border);
+  min-height: 44px;
+}
+
+.cinematic-input {
+  background-color: var(--input-bg);
+  color: var(--fg-primary);
+  border: 1px solid var(--input-border);
+  min-height: 44px;
+}
+
+.cinematic-input:focus {
+  background-color: var(--input-bg-focus);
+  border-color: var(--input-border-focus);
+  outline: 2px solid var(--ring-focus);
+  outline-offset: 2px;
+}

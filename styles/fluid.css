@@ -1,0 +1,33 @@
+/*
+ * CINEMATIC v2.0 — Section 12: Fluid Responsive Design System (320px to 2560px)
+ */
+
+:root {
+  /* Fluid Typography Scale */
+  --text-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.82rem);
+  --text-sm: clamp(0.875rem, 0.84rem + 0.18vw, 0.96rem);
+  --text-base: clamp(1rem, 0.96rem + 0.22vw, 1.08rem);
+  --text-lg: clamp(1.125rem, 1.06rem + 0.32vw, 1.28rem);
+  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.55rem);
+  --text-2xl: clamp(1.5rem, 1.32rem + 0.9vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.58rem + 1.45vw, 2.75rem);
+  --text-4xl: clamp(2.25rem, 1.8rem + 2.2vw, 3.6rem);
+  --text-display: clamp(2.75rem, 2.1rem + 3.2vw, 4.75rem);
+
+  /* Fluid Spacing Scale */
+  --space-1: clamp(0.25rem, 0.22rem + 0.1vw, 0.35rem);
+  --space-2: clamp(0.5rem, 0.45rem + 0.2vw, 0.65rem);
+  --space-3: clamp(0.75rem, 0.68rem + 0.3vw, 0.95rem);
+  --space-4: clamp(1rem, 0.9rem + 0.45vw, 1.3rem);
+  --space-6: clamp(1.5rem, 1.3rem + 0.85vw, 2rem);
+  --space-8: clamp(2rem, 1.7rem + 1.3vw, 2.85rem);
+  --space-12: clamp(3rem, 2.4rem + 2.4vw, 4.5rem);
+  --space-16: clamp(4rem, 3.1rem + 3.5vw, 6.25rem);
+
+  /* Fluid Container System */
+  --container-narrow: 42rem;
+  --container-content: 68rem;
+  --container-wide: 84rem;
+  --container-max: 96rem;
+  --page-gutter: clamp(1rem, 3vw, 3rem);
+}

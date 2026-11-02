@@ -1,0 +1,398 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 5001 >>
+stream
+BT
+/F2 16 Tf
+1 0 0 1 50.0 742.0 Tm
+(FLUXORA - COMPLETE END-TO-END ENGINEERING SUMMARY) Tj
+/F1 11 Tf
+1 0 0 1 50.0 720.0 Tm
+(Futuristic Financial Flow Tracking, Roommate Split Ledger & AI Financial Advisor) Tj
+/F2 12 Tf
+1 0 0 1 50.0 694.0 Tm
+(1. Project Identity, Platform Configuration & Architecture) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 676.0 Tm
+(- Application Name & ID: Fluxora \(applicationId: com.aistudio.financetrack.qwrxnv,) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 663.0 Tm
+(  namespace: com.example\) synchronized across strings.xml, settings.gradle.kts, and) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 650.0 Tm
+(  metadata.json.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 635.0 Tm
+(- Tech Stack: 100% Kotlin and Jetpack Compose with Material Design 3 \(M3\),) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 622.0 Tm
+(  Coroutines/StateFlow, DataStore Preferences, WorkManager, Jetpack Credential) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 609.0 Tm
+(  Manager, Biometric API, and Firebase \(Auth, Firestore, AI Logic, App Check\).) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 594.0 Tm
+(- Adaptive Launcher Icon: Custom vector foreground and background adaptive launcher) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 581.0 Tm
+(  icons configured in mipmap-anydpi-v26.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 566.0 Tm
+(- Edge-to-Edge & Responsive UI: Configured enableEdgeToEdge\(\) in MainActivity with) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 553.0 Tm
+(  proper WindowInsets handling and responsive layouts.) Tj
+/F2 12 Tf
+1 0 0 1 50.0 530.0 Tm
+(2. Futuristic Visual Design System & 3D Interactive Components) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 512.0 Tm
+(- 8 Signature Themes \(AppTheme\): Midnight Emerald \(Default\), Cyber Violet, Solar) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 499.0 Tm
+(  Gold, Arctic Cyan, Crimson Pulse, Obsidian Rose, Aurora Borealis, and Monochrome) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 486.0 Tm
+(  Slate, with full Dark and Light mode support in Theme.kt.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 471.0 Tm
+(- FinancialHero3DScene: Custom interactive 3D Cash-Flow Reactor / Gyroscopic Orbital) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 458.0 Tm
+(  Core rendered on Canvas with touch-drag 3D rotation, animated particle streams,) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 445.0 Tm
+(  income/expense orbital rings, and live net balance telemetry.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 430.0 Tm
+(- DynamicIsland: Floating top status capsule surfacing live cash-flow health, active) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 417.0 Tm
+(  budget warnings, and quick navigation.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 402.0 Tm
+(- Indian Currency Formatting: FinancialEngine.formatIndianCurrency formats minor) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 389.0 Tm
+(  units \(paise\) into standard Indian numbering grouping \(e.g., INR 39,050.00\) with) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 376.0 Tm
+(  optional sign prefixes.) Tj
+/F2 12 Tf
+1 0 0 1 50.0 353.0 Tm
+(3. Authentication, Phone Verification & Security Architecture) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 335.0 Tm
+(- Multi-Modal Firebase Auth \(AuthManager\): Supports Google Sign-In via Jetpack) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 322.0 Tm
+(  Credential Manager \(GetSignInWithGoogleOption\), Email/Password authentication, and) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 309.0 Tm
+(  Firebase Phone Auth OTP verification.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 294.0 Tm
+(- Per-User Phone Verification & Ownership Scoping: PreferencesManager scopes) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 281.0 Tm
+(  verified E.164 phone numbers per user UID \(isPhoneVerifiedFlow,) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 268.0 Tm
+(  getVerifiedPhoneFlow, getPhoneOwnerFlow\) and prevents duplicate phone number) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 255.0 Tm
+(  claiming across different accounts.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 240.0 Tm
+(- International Phone Validation \(PhoneValidation.kt & CountryPhoneInputField.kt\):) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 227.0 Tm
+(  Supports country code search and selection \(defaulting to India +91\), national) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 214.0 Tm
+(  digit extraction, and strict E.164 normalization.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 199.0 Tm
+(- Biometric Lock & Inactivity Monitor \(BiometricAuthManager, BiometricAuthScreen,) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 186.0 Tm
+(  AppLockMonitor\): Hardware biometric/device credential lock gate with configurable) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 173.0 Tm
+(  inactivity timeout and automatic state cleanup on sign-out.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 158.0 Tm
+(- Sensitive Amount Masking \(LocalHideSensitiveAmounts\): Global CompositionLocal) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 145.0 Tm
+(  privacy toggle masking monetary figures across all screens.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 130.0 Tm
+(- Firebase App Check \(AppCheckConfiguration\): Play Integrity provider for release) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 117.0 Tm
+(  builds and Debug provider for development builds.) Tj
+/F2 12 Tf
+1 0 0 1 50.0 94.0 Tm
+(4. Cloud Data Layer Migration & Financial Domain Engine) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 76.0 Tm
+(- Room-to-Firestore Data Layer Consolidation: Removed legacy Room SQLite) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 63.0 Tm
+(  database/DAOs \(AppDatabase, TransactionDao, CategoryDao, BudgetDao,) Tj
+/F1 8.5 Tf
+1 0 0 1 50 28 Tm
+(Fluxora Engineering Summary - Page 1 of 3) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 5130 >>
+stream
+BT
+/F1 9.5 Tf
+1 0 0 1 58.0 742.0 Tm
+(  SavingsGoalDao, RecurringBillDao, RoommateDao, HouseholdMemberDao,) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 729.0 Tm
+(  NotificationDao\) and commented out unused Room dependencies in) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 716.0 Tm
+(  app/build.gradle.kts.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 701.0 Tm
+(- Unified FinanceRepository: Reactive StateFlow + FirebaseFirestore persistence) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 688.0 Tm
+(  layer with zero-trust firestore.rules enforcing authenticated ownership and strict) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 675.0 Tm
+(  schema validation.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 660.0 Tm
+(- Transactions & Date Validation: Supports INCOME and EXPENSE records in minor units) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 647.0 Tm
+(  \(1..MAX_AMOUNT_MINOR\). DateValidator.validateTransactionDate allows past/today) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 634.0 Tm
+(  dates and rejects future-dated transactions with clear user feedback.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 619.0 Tm
+(- Categories: 12 built-in default categories \(Housing, Food & Dining, Groceries,) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 606.0 Tm
+(  Transportation, Education, Shopping, Entertainment, Health, Bills & Utilities,) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 593.0 Tm
+(  Travel, Subscriptions, Other\) plus custom user categories.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 578.0 Tm
+(- Budgets & Savings Goals: Monthly category budgets with 80% warning and 100%) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 565.0 Tm
+(  exceeded alerts; savings goals with automatic 25%, 50%, 75%, and 100% milestone) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 552.0 Tm
+(  tracking.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 537.0 Tm
+(- Atomic Recurring Bills: Weekly, Monthly, and Yearly recurring bills.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 524.0 Tm
+(  markBillAsPaid atomically records the expense transaction, advances nextDueDate,) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 511.0 Tm
+(  and deduplicates rapid repeat invocations within a 10-second window.) Tj
+/F2 12 Tf
+1 0 0 1 50.0 488.0 Tm
+(5. Roommate Split Ledger, Connection Requests & UPI Payments) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 470.0 Tm
+(- Shared Expense Splitting: Supports EQUAL, EXACT, PERCENTAGE, and SHARES split) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 457.0 Tm
+(  methods. Enforces strict validation that participant split amounts sum exactly to) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 444.0 Tm
+(  totalAmount.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 429.0 Tm
+(- Bidirectional Roommate Connection Requests \(RoommateConnectionRequest\): Enforces) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 416.0 Tm
+(  strict sender/recipient query separation \(isIncomingFor vs. isOutgoingFor\), blocks) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 403.0 Tm
+(  self-requests by phone or UID, blocks duplicate pending requests, blocks) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 390.0 Tm
+(  unverified phone numbers, prevents senders or third parties from) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 377.0 Tm
+(  accepting/declining requests, protects against remote sync tampering) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 364.0 Tm
+(  \(syncRemoteConnectionRequest\), and automatically adds accepted roommates to) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 351.0 Tm
+(  HouseholdMember.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 336.0 Tm
+(- UPI Payment Handoff \(PaymentManager\): Validates UPI VPAs \(alex@okhdfcbank, etc.\)) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 323.0 Tm
+(  and amount bounds, launching standard Android upi://pay deep-link intents for) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 310.0 Tm
+(  instant settlement.) Tj
+/F2 12 Tf
+1 0 0 1 50.0 287.0 Tm
+(6. AI Financial Advisor \(Firebase AI Logic & Gemini 2.5 Flash\)) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 269.0 Tm
+(- Daily AI Saving Insight: Uses Firebase.ai.generativeModel\("gemini-2.5-flash"\) with) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 256.0 Tm
+(  30s timeout, automatic retry on transient errors, and friendly fallback messages) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 243.0 Tm
+(  for App Check, quota, or network issues.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 228.0 Tm
+(- Interactive Gemini Chat Assistant \(GeminiChatDialog & GeminiChatViewModel\):) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 215.0 Tm
+(  Conversational financial assistant aware of user budgets, bills, and spending) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 202.0 Tm
+(  patterns, with clean manual state reset \(resetUiState\).) Tj
+/F2 12 Tf
+1 0 0 1 50.0 179.0 Tm
+(7. Notification System, CSV Data Portability & Legal/Creator Screens) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 161.0 Tm
+(- Granular Notification Engine \(NotificationManager, SystemNotificationHelper,) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 148.0 Tm
+(  BillReminderWorker, BillActionReceiver\): Master notification switch preserves) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 135.0 Tm
+(  individual category toggles \(Budget, Bill, Savings, Roommate, Insight\) when) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 122.0 Tm
+(  disabled and re-enabled, suppresses disabled categories, and deduplicates alerts) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 109.0 Tm
+(  by relatedId.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 94.0 Tm
+(- CSV Export & Formula Injection Defense \(exportToCsv\): Exports transactions to CSV) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 81.0 Tm
+(  while prefixing leading =, +, -, and @ characters with a single quote to) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 68.0 Tm
+(  neutralize spreadsheet formula injection.) Tj
+/F1 8.5 Tf
+1 0 0 1 50 28 Tm
+(Fluxora Engineering Summary - Page 2 of 3) Tj
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 1692 >>
+stream
+BT
+/F1 9.5 Tf
+1 0 0 1 58.0 742.0 Tm
+(- CSV Import & Batch Deduplication \(importFromCsv\): Validates columns and amounts,) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 729.0 Tm
+(  reports malformed rows, and silently skips duplicate rows within the same import) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 716.0 Tm
+(  batch.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 701.0 Tm
+(- Legal Compliance & Contact Routing \(LegalScreens.kt\): 8-section Privacy Policy and) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 688.0 Tm
+(  Terms & Conditions with accordion UI, zero drafting placeholders, and official) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 675.0 Tm
+(  mailto: intent routing \(openContactEmail\) for Ayush Mishra and Sunaina Bansal.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 660.0 Tm
+(- Authors & Credits \(AuthorsScreen.kt\): Showcases creators Ayush Mishra, Sunaina) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 647.0 Tm
+(  Bansal, and Rohan Kumar \(with LinkedIn integration\).) Tj
+/F2 12 Tf
+1 0 0 1 50.0 624.0 Tm
+(8. Verification, Compilation & 74-Test Robolectric Suite) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 606.0 Tm
+(- Full Project Compilation: Verified clean debug APK compilation via) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 593.0 Tm
+(  compileDebugKotlin and assembleDebug.) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 578.0 Tm
+(- Automated Test Suite \(ExampleRobolectricTest & SecurityAndPaymentTest\): 74 unit) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 565.0 Tm
+(  and Robolectric tests validating themes, roommate connection security, recurring) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 552.0 Tm
+(  bill idempotency, CSV import/export safety, UPI validation, notification) Tj
+/F1 9.5 Tf
+1 0 0 1 58.0 539.0 Tm
+(  deduplication, phone verification scoping, and legal compliance.) Tj
+/F1 8.5 Tf
+1 0 0 1 50 28 Tm
+(Fluxora Engineering Summary - Page 3 of 3) Tj
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 9 0 R >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000134 00000 n 
+0000000231 00000 n 
+0000000333 00000 n 
+0000005386 00000 n 
+0000005522 00000 n 
+0000010704 00000 n 
+0000010840 00000 n 
+0000012584 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+12721
+%%EOF

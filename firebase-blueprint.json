@@ -1,0 +1,235 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Authenticated Fluxora user profile and phone verification metadata.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner Firebase Auth UID." },
+        "displayName": { "type": "string", "description": "User display name." },
+        "email": { "type": "string", "description": "User email address." },
+        "verifiedPhone": { "type": "string", "description": "Verified E.164 phone number." },
+        "upiVpa": { "type": "string", "description": "User UPI VPA handle." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp via FieldValue.serverTimestamp()." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp via FieldValue.serverTimestamp()." }
+      },
+      "required": ["userId", "displayName", "createdAt", "updatedAt"]
+    },
+    "PhoneOwnership": {
+      "title": "PhoneOwnership",
+      "description": "Exclusive E.164 phone number ownership record scoped to a single UID.",
+      "type": "object",
+      "properties": {
+        "phoneE164": { "type": "string", "description": "Normalized E.164 phone number." },
+        "ownerUid": { "type": "string", "description": "UID of the verified owner." },
+        "displayName": { "type": "string", "description": "Owner display name for roommate lookup." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": ["phoneE164", "ownerUid", "createdAt", "updatedAt"]
+    },
+    "FinancialTransaction": {
+      "title": "FinancialTransaction",
+      "description": "Income or expense financial transaction stored in minor units (paise).",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner UID." },
+        "title": { "type": "string", "description": "Transaction description or merchant." },
+        "amountMinor": { "type": "integer", "description": "Amount in paise (1..MAX_AMOUNT_MINOR)." },
+        "type": { "type": "string", "enum": ["INCOME", "EXPENSE"], "description": "Transaction direction." },
+        "categoryId": { "type": "string", "description": "Category identifier." },
+        "categoryName": { "type": "string", "description": "Category display name." },
+        "timestampMillis": { "type": "integer", "description": "Transaction epoch milliseconds (past or today)." },
+        "notes": { "type": "string", "description": "Optional transaction notes." },
+        "recurringBillId": { "type": "string", "description": "Optional source recurring bill ID." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": ["userId", "title", "amountMinor", "type", "categoryId", "categoryName", "timestampMillis", "createdAt", "updatedAt"]
+    },
+    "FinancialCategory": {
+      "title": "FinancialCategory",
+      "description": "Built-in or custom financial category.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner UID." },
+        "name": { "type": "string", "description": "Display name." },
+        "normalizedName": { "type": "string", "description": "Lowercase trimmed key." },
+        "iconName": { "type": "string", "description": "Material icon identifier." },
+        "colorHex": { "type": "string", "description": "Hex color token." },
+        "isDefault": { "type": "boolean", "description": "Whether built-in category." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": ["userId", "name", "normalizedName", "iconName", "colorHex", "isDefault", "createdAt", "updatedAt"]
+    },
+    "CategoryBudget": {
+      "title": "CategoryBudget",
+      "description": "Monthly category spending budget in minor units.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner UID." },
+        "categoryId": { "type": "string", "description": "Target category ID." },
+        "categoryName": { "type": "string", "description": "Target category name." },
+        "monthKey": { "type": "string", "description": "YYYY-MM month identifier." },
+        "limitMinor": { "type": "integer", "description": "Monthly budget limit in paise." },
+        "alert80Triggered": { "type": "boolean", "description": "Whether 80% warning was emitted." },
+        "alert100Triggered": { "type": "boolean", "description": "Whether 100% exceeded alert was emitted." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": ["userId", "categoryId", "categoryName", "monthKey", "limitMinor", "alert80Triggered", "alert100Triggered", "createdAt", "updatedAt"]
+    },
+    "SavingsGoal": {
+      "title": "SavingsGoal",
+      "description": "Savings target with milestone tracking (25%, 50%, 75%, 100%).",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner UID." },
+        "title": { "type": "string", "description": "Goal title." },
+        "targetMinor": { "type": "integer", "description": "Target amount in paise." },
+        "savedMinor": { "type": "integer", "description": "Current saved amount in paise." },
+        "targetDateMillis": { "type": "integer", "description": "Target completion timestamp." },
+        "highestMilestoneNotified": { "type": "integer", "description": "Highest milestone percentage notified (0, 25, 50, 75, 100)." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": ["userId", "title", "targetMinor", "savedMinor", "targetDateMillis", "highestMilestoneNotified", "createdAt", "updatedAt"]
+    },
+    "RecurringBill": {
+      "title": "RecurringBill",
+      "description": "Weekly, Monthly, or Yearly recurring bill with 10-second atomic payment deduplication.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner UID." },
+        "title": { "type": "string", "description": "Bill title." },
+        "amountMinor": { "type": "integer", "description": "Bill amount in paise." },
+        "categoryId": { "type": "string", "description": "Category ID." },
+        "categoryName": { "type": "string", "description": "Category name." },
+        "frequency": { "type": "string", "enum": ["WEEKLY", "MONTHLY", "YEARLY"], "description": "Recurrence frequency." },
+        "nextDueDateMillis": { "type": "integer", "description": "Next due date epoch ms." },
+        "lastPaidAtMillis": { "type": "integer", "description": "Last atomic markBillAsPaid epoch ms." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": ["userId", "title", "amountMinor", "categoryId", "categoryName", "frequency", "nextDueDateMillis", "lastPaidAtMillis", "createdAt", "updatedAt"]
+    },
+    "HouseholdMember": {
+      "title": "HouseholdMember",
+      "description": "Connected roommate in user's household ledger.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner UID." },
+        "memberUid": { "type": "string", "description": "Connected roommate UID." },
+        "name": { "type": "string", "description": "Roommate display name." },
+        "phoneE164": { "type": "string", "description": "Verified E.164 phone number." },
+        "upiVpa": { "type": "string", "description": "Optional UPI VPA for instant settlement." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": ["userId", "memberUid", "name", "phoneE164", "createdAt", "updatedAt"]
+    },
+    "SharedExpense": {
+      "title": "SharedExpense",
+      "description": "Shared roommate expense split via EQUAL, EXACT, PERCENTAGE, or SHARES.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner UID." },
+        "title": { "type": "string", "description": "Expense description." },
+        "totalAmountMinor": { "type": "integer", "description": "Total amount in paise." },
+        "paidByMemberId": { "type": "string", "description": "Member ID or UID who paid." },
+        "paidByName": { "type": "string", "description": "Payer name." },
+        "splitMethod": { "type": "string", "enum": ["EQUAL", "EXACT", "PERCENTAGE", "SHARES"], "description": "Split algorithm." },
+        "participantIds": { "type": "string", "description": "Pipe-delimited participant IDs." },
+        "participantNames": { "type": "string", "description": "Pipe-delimited participant names." },
+        "participantSharesMinor": { "type": "string", "description": "Pipe-delimited participant minor-unit shares summing to totalAmountMinor." },
+        "participantSettledFlags": { "type": "string", "description": "Pipe-delimited settlement flags." },
+        "isFullySettled": { "type": "boolean", "description": "Whether all participant splits are settled." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": ["userId", "title", "totalAmountMinor", "paidByMemberId", "paidByName", "splitMethod", "participantIds", "participantNames", "participantSharesMinor", "participantSettledFlags", "isFullySettled", "createdAt", "updatedAt"]
+    },
+    "RoommateConnectionRequest": {
+      "title": "RoommateConnectionRequest",
+      "description": "Bidirectional roommate connection request with recipient-only transition enforcement.",
+      "type": "object",
+      "properties": {
+        "senderUid": { "type": "string", "description": "Sender Firebase UID." },
+        "senderName": { "type": "string", "description": "Sender display name." },
+        "senderPhone": { "type": "string", "description": "Sender verified E.164 phone." },
+        "senderUpiVpa": { "type": "string", "description": "Sender optional UPI VPA." },
+        "recipientUid": { "type": "string", "description": "Recipient Firebase UID." },
+        "recipientName": { "type": "string", "description": "Recipient display name." },
+        "recipientPhone": { "type": "string", "description": "Recipient E.164 phone." },
+        "status": { "type": "string", "enum": ["PENDING", "ACCEPTED", "DECLINED"], "description": "Connection status." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": ["senderUid", "senderName", "senderPhone", "recipientUid", "recipientName", "recipientPhone", "status", "createdAt", "updatedAt"]
+    },
+    "AppNotification": {
+      "title": "AppNotification",
+      "description": "Deduplicated in-app notification record.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner UID." },
+        "category": { "type": "string", "enum": ["BUDGET", "BILL", "SAVINGS", "ROOMMATE", "INSIGHT"], "description": "Notification category." },
+        "title": { "type": "string", "description": "Alert title." },
+        "message": { "type": "string", "description": "Alert body." },
+        "relatedId": { "type": "string", "description": "Deduplication key for source entity/threshold." },
+        "isRead": { "type": "boolean", "description": "Whether read by user." },
+        "timestampMillis": { "type": "integer", "description": "Event timestamp ms." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": ["userId", "category", "title", "message", "relatedId", "isRead", "timestampMillis", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Authenticated user profile document."
+    },
+    "/phone_registry/{phoneE164}": {
+      "schema": { "$ref": "#/entities/PhoneOwnership" },
+      "description": "Global E.164 phone ownership registry."
+    },
+    "/users/{userId}/transactions/{transactionId}": {
+      "schema": { "$ref": "#/entities/FinancialTransaction" },
+      "description": "User income and expense transactions."
+    },
+    "/users/{userId}/categories/{categoryId}": {
+      "schema": { "$ref": "#/entities/FinancialCategory" },
+      "description": "User built-in and custom categories."
+    },
+    "/users/{userId}/budgets/{budgetId}": {
+      "schema": { "$ref": "#/entities/CategoryBudget" },
+      "description": "User monthly category budgets."
+    },
+    "/users/{userId}/savings_goals/{goalId}": {
+      "schema": { "$ref": "#/entities/SavingsGoal" },
+      "description": "User savings goals and milestones."
+    },
+    "/users/{userId}/recurring_bills/{billId}": {
+      "schema": { "$ref": "#/entities/RecurringBill" },
+      "description": "User recurring bills."
+    },
+    "/users/{userId}/household_members/{memberId}": {
+      "schema": { "$ref": "#/entities/HouseholdMember" },
+      "description": "User connected roommates."
+    },
+    "/users/{userId}/shared_expenses/{expenseId}": {
+      "schema": { "$ref": "#/entities/SharedExpense" },
+      "description": "User shared roommate expenses."
+    },
+    "/connection_requests/{requestId}": {
+      "schema": { "$ref": "#/entities/RoommateConnectionRequest" },
+      "description": "Bidirectional roommate connection requests."
+    },
+    "/users/{userId}/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/AppNotification" },
+      "description": "User deduplicated notifications."
+    }
+  }
+}

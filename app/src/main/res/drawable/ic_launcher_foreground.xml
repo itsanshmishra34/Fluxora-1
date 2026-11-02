@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Ambient Emerald-Cyan Glow Behind Wing Emblem -->
+    <path
+        android:fillColor="#2210B981"
+        android:pathData="M54,54m-30,0a30,30 0,1 1,60 0a30,30 0,1 1,-60 0" />
+
+    <!-- Upper Wing of Stylized 'F' (Primary Emerald to Accent Cyan) -->
+    <path android:pathData="M31,64 C28,44 43,31 77,25 C73,43 59,52 38,60 C35,61 33,63 31,64 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="31"
+                android:startY="64"
+                android:endX="77"
+                android:endY="25"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#059669" />
+                <item android:offset="0.45" android:color="#10B981" />
+                <item android:offset="0.82" android:color="#22D3EE" />
+                <item android:offset="1.0" android:color="#CCFBF1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Upper Wing Specular Rim Highlight -->
+    <path
+        android:fillColor="#66CCFBF1"
+        android:pathData="M32,61 C31,44 45,32 76,26 C64,34 45,42 35,58 Z" />
+
+    <!-- Lower Wing of Stylized 'F' (Emerald to Cyan) -->
+    <path android:pathData="M37,83 C34,67 44,56 67,50 C64,64 54,71 42,78 C39,80 38,81 37,83 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="37"
+                android:startY="83"
+                android:endX="67"
+                android:endY="50"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#047857" />
+                <item android:offset="0.45" android:color="#10B981" />
+                <item android:offset="0.85" android:color="#22D3EE" />
+                <item android:offset="1.0" android:color="#A7F3D0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Lower Wing Specular Highlight -->
+    <path
+        android:fillColor="#55A7F3D0"
+        android:pathData="M38,80 C37,67 46,57 66,51 C56,57 45,64 40,76 Z" />
+</vector>

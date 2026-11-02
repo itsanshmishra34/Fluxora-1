@@ -1,0 +1,58 @@
+/*
+ * CINEMATIC v2.0 — Layer A: Primitive Color Tokens
+ * Raw palette values ONLY. Never referenced directly by UI components.
+ */
+
+:root {
+  /* Dark Core Palette (Midnight / Moonlight / Glacial) */
+  --primitive-midnight-950: #070B12;
+  --primitive-midnight-900: #0D1521;
+  --primitive-midnight-850: #142235;
+  --primitive-midnight-800: #1D3045;
+  --primitive-midnight-750: #26394D;
+  --primitive-slate-700: #40566C;
+  --primitive-glacial-400: #6D91B2;
+  --primitive-moonlight-200: #B9C9D8;
+  --primitive-moonlight-100: #E4EDF5;
+  --primitive-frost-300: #8BA9A9;
+
+  /* Light Core Palette (Cloud / Snow / Slate) */
+  --primitive-cloud-50: #F3F6F9;
+  --primitive-snow-0: #FFFFFF;
+  --primitive-cloud-100: #E5ECF2;
+  --primitive-cloud-200: #D0DCE7;
+  --primitive-slate-500: #718398;
+  --primitive-slate-600: #526477;
+  --primitive-glacial-600: #526B80;
+  --primitive-midnight-900-ink: #172A3D;
+
+  /* Status Primitives — Dark */
+  --primitive-status-success-dark: #8DBEAA;
+  --primitive-status-warning-dark: #E7BE79;
+  --primitive-status-danger-dark: #E58C94;
+  --primitive-status-info-dark: #85B9DB;
+  --primitive-status-success-bg-dark: #10261F;
+  --primitive-status-warning-bg-dark: #2B2111;
+  --primitive-status-danger-bg-dark: #2D1519;
+  --primitive-status-info-bg-dark: #102334;
+
+  /* Status Primitives — Light */
+  --primitive-status-success-light: #287A58;
+  --primitive-status-warning-light: #956019;
+  --primitive-status-danger-light: #B83D4B;
+  --primitive-status-info-light: #286B99;
+  --primitive-status-success-bg-light: #E8F5EF;
+  --primitive-status-warning-bg-light: #FBF3E4;
+  --primitive-status-danger-bg-light: #FCECEE;
+  --primitive-status-info-bg-light: #EAF3FA;
+  
+  /* Fluxora Cinematic Brand Primitives */
+  --fluxora-midnight-abyss: #101722;
+  --fluxora-deep-ocean: #1C3040;
+  --fluxora-storm-teal: #315D68;
+  --fluxora-cosmic-violet: #7966B5;
+  --fluxora-sunset-coral: #E87978;
+  --fluxora-moonlight-blue: #B9C8DC;
+  --fluxora-dream-lavender: #E6E0F2;
+  --fluxora-aurora-mint: #A7D6C5;
+}

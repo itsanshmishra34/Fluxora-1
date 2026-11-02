@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Fluxora</string>
+    <string name="tagline">Your household\'s money, simple and private.</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="quick_add_spend">Quick Add</string>
+    <string name="available_to_spend">Available to Spend</string>
+    <string name="total_income">Income</string>
+    <string name="total_expenses">Expenses</string>
+    <string name="see_all_transactions">See all transactions</string>
+    <string name="more_split_options">More split options</string>
+    <string name="settled_confirmed_by_both">Settled (confirmed by both)</string>
+    <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="terms_conditions_title">Terms &amp; Conditions</string>
+    <string name="authors_credits_title">Authors &amp; Credits</string>
+    <string name="contact_email_address" translatable="false">itsanshmishra34@gmail.com</string>
+    <string name="author_ayush_name">Ayush Mishra</string>
+    <string name="author_ayush_linkedin" translatable="false">https://www.linkedin.com/in/ayush-mishra-12b36a37a/</string>
+    <string name="author_sunaina_name">Sunaina Bansal</string>
+    <string name="author_sunaina_linkedin" translatable="false">https://www.linkedin.com/in/sunaina-bansal-b5107a374/</string>
+    <string name="author_rohan_name">Rohan Kumar</string>
+    <string name="author_rohan_linkedin" translatable="false">https://www.linkedin.com/in/rohan-16kumar</string>
+</resources>

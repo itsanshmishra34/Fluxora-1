@@ -1,0 +1,137 @@
+/*
+ * CINEMATIC v2.0 — Adaptive Light & System Theme Mappings
+ * Preserves identical semantic token names across Dark, Light, and System themes.
+ */
+
+[data-theme="light"] {
+  /* 1. Backgrounds */
+  --bg-canvas: var(--primitive-cloud-50);
+  --bg-primary: var(--primitive-snow-0);
+  --bg-secondary: var(--primitive-cloud-100);
+  --bg-tertiary: var(--primitive-cloud-200);
+  --bg-elevated: var(--primitive-snow-0);
+  --bg-floating: var(--primitive-snow-0);
+  --bg-glass: rgba(255, 255, 255, 0.80);
+  --bg-overlay: rgba(23, 42, 61, 0.48);
+  --bg-spotlight: rgba(82, 107, 128, 0.08);
+
+  /* 2. Surfaces */
+  --surface-default: var(--primitive-snow-0);
+  --surface-subtle: var(--primitive-cloud-50);
+  --surface-raised: var(--primitive-snow-0);
+  --surface-interactive: var(--primitive-cloud-100);
+  --surface-hover: var(--primitive-cloud-100);
+  --surface-active: var(--primitive-cloud-200);
+  --surface-selected: var(--primitive-cloud-100);
+  --surface-disabled: rgba(229, 236, 242, 0.60);
+
+  /* 3. Foreground / Text (WCAG AA Verified) */
+  --fg-primary: var(--primitive-midnight-900-ink);
+  --fg-secondary: var(--primitive-slate-600);
+  --fg-muted: var(--primitive-slate-600);
+  --fg-subtle: var(--primitive-slate-500);
+  --fg-disabled: rgba(113, 131, 152, 0.55);
+  --fg-inverse: var(--primitive-snow-0);
+  --fg-on-accent: var(--primitive-snow-0);
+  --fg-on-status: var(--primitive-snow-0);
+
+  /* 4. Brand & Accent */
+  --accent-primary: var(--primitive-glacial-600);
+  --accent-primary-hover: var(--primitive-midnight-900-ink);
+  --accent-primary-active: var(--primitive-midnight-900-ink);
+  --accent-secondary: var(--primitive-slate-600);
+  --accent-secondary-hover: var(--primitive-midnight-900-ink);
+  --accent-tertiary: var(--primitive-slate-500);
+  --accent-soft: rgba(82, 107, 128, 0.12);
+  --accent-glow: rgba(82, 107, 128, 0.20);
+
+  /* 5. Borders & Dividers */
+  --border-subtle: var(--primitive-cloud-100);
+  --border-default: var(--primitive-cloud-200);
+  --border-strong: var(--primitive-slate-500);
+  --border-interactive: var(--primitive-glacial-600);
+  --border-focus: var(--primitive-midnight-900-ink);
+  --border-disabled: var(--primitive-cloud-100);
+  --divider-default: var(--primitive-cloud-200);
+
+  /* 6. Focus & Ring */
+  --ring-focus: var(--primitive-glacial-600);
+  --ring-offset: var(--primitive-snow-0);
+
+  /* 7. Icons */
+  --icon-primary: var(--primitive-midnight-900-ink);
+  --icon-secondary: var(--primitive-slate-600);
+  --icon-muted: var(--primitive-slate-500);
+  --icon-accent: var(--primitive-glacial-600);
+  --icon-disabled: rgba(113, 131, 152, 0.45);
+
+  /* 8. Inputs */
+  --input-bg: var(--primitive-snow-0);
+  --input-bg-hover: var(--primitive-cloud-50);
+  --input-bg-focus: var(--primitive-snow-0);
+  --input-border: var(--primitive-cloud-200);
+  --input-border-hover: var(--primitive-slate-500);
+  --input-border-focus: var(--primitive-glacial-600);
+  --input-placeholder: var(--primitive-slate-600);
+
+  /* 9. Buttons */
+  --btn-primary-bg: var(--primitive-midnight-900-ink);
+  --btn-primary-fg: var(--primitive-snow-0);
+  --btn-primary-hover: var(--primitive-glacial-600);
+  --btn-secondary-bg: var(--primitive-cloud-100);
+  --btn-secondary-fg: var(--primitive-midnight-900-ink);
+  --btn-secondary-border: var(--primitive-cloud-200);
+  --btn-ghost-hover: var(--primitive-cloud-100);
+
+  /* 10. Navigation */
+  --nav-bg: rgba(255, 255, 255, 0.90);
+  --nav-border: var(--primitive-cloud-200);
+  --nav-item-fg: var(--primitive-slate-600);
+  --nav-item-active-fg: var(--primitive-midnight-900-ink);
+  --nav-item-active-bg: var(--primitive-cloud-100);
+
+  /* 11. Cards & Panels */
+  --card-bg: var(--primitive-snow-0);
+  --card-elevated-bg: var(--primitive-snow-0);
+  --card-border: var(--primitive-cloud-200);
+  --card-hover-border: var(--primitive-glacial-600);
+
+  /* 12. Tables & Data Grids */
+  --table-header-bg: var(--primitive-cloud-100);
+  --table-row-hover: var(--primitive-cloud-50);
+  --table-row-selected: var(--primitive-cloud-100);
+  --table-border: var(--primitive-cloud-200);
+
+  /* 13. Status Tokens */
+  --status-success-fg: var(--primitive-status-success-light);
+  --status-success-bg: var(--primitive-status-success-bg-light);
+  --status-success-border: rgba(40, 122, 88, 0.30);
+  --status-warning-fg: var(--primitive-status-warning-light);
+  --status-warning-bg: var(--primitive-status-warning-bg-light);
+  --status-warning-border: rgba(149, 96, 25, 0.30);
+  --status-danger-fg: var(--primitive-status-danger-light);
+  --status-danger-bg: var(--primitive-status-danger-bg-light);
+  --status-danger-border: rgba(184, 61, 75, 0.30);
+  --status-info-fg: var(--primitive-status-info-light);
+  --status-info-bg: var(--primitive-status-info-bg-light);
+  --status-info-border: rgba(40, 107, 153, 0.30);
+
+  /* 14. Charts & Analytics */
+  --chart-1: var(--primitive-glacial-600);
+  --chart-2: var(--primitive-midnight-900-ink);
+  --chart-3: var(--primitive-slate-500);
+  --chart-4: var(--primitive-status-success-light);
+  --chart-5: var(--primitive-status-warning-light);
+  --chart-6: var(--primitive-status-danger-light);
+  --chart-grid: var(--primitive-cloud-200);
+  --chart-axis: var(--primitive-slate-600);
+  --chart-tooltip-bg: var(--primitive-snow-0);
+
+  /* 15. Scrollbars, Selection & Skeleton */
+  --selection-bg: rgba(82, 107, 128, 0.22);
+  --selection-fg: var(--primitive-midnight-900-ink);
+  --scrollbar-track: var(--primitive-cloud-50);
+  --scrollbar-thumb: var(--primitive-cloud-200);
+  --skeleton-base: var(--primitive-cloud-100);
+  --skeleton-shimmer: var(--primitive-cloud-200);
+}

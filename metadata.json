@@ -1,0 +1,6 @@
+{
+  "name": "Fluxora",
+  "description": "Futuristic Financial Flow Tracking, Roommate Split Ledger & AI Financial Advisor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

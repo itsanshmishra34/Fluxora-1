@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@import "./primitives.css";
+@import "./semantic-tokens.css";
+@import "./themes.css";
+@import "./gradients.css";
+@import "./shadows.css";
+@import "./fluid.css";
+@import "./components.css";
+
+@theme inline {
+  --font-display: 'Manrope', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --color-canvas: var(--bg-canvas);
+  --color-primary: var(--bg-primary);
+  --color-secondary: var(--bg-secondary);
+  --color-tertiary: var(--bg-tertiary);
+  --color-elevated: var(--bg-elevated);
+  --color-floating: var(--bg-floating);
+  --color-surface-default: var(--surface-default);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-raised: var(--surface-raised);
+  --color-fg-primary: var(--fg-primary);
+  --color-fg-secondary: var(--fg-secondary);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-tertiary: var(--accent-tertiary);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-strong: var(--border-strong);
+  --color-border-focus: var(--border-focus);
+  --color-status-success: var(--status-success-fg);
+  --color-status-warning: var(--status-warning-fg);
+  --color-status-danger: var(--status-danger-fg);
+  --color-status-info: var(--status-info-fg);
+}

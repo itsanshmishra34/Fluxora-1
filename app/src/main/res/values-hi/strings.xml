@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Fluxora</string>
+    <string name="tagline">आपका घर का हिसाब, सरल और सुरक्षित।</string>
+    <string name="sign_in_with_google">Google से साइन इन करें</string>
+    <string name="quick_add_spend">तुरंत जोड़ें</string>
+    <string name="available_to_spend">खर्च के लिए उपलब्ध</string>
+    <string name="total_income">कुल आय</string>
+    <string name="total_expenses">कुल खर्च</string>
+    <string name="see_all_transactions">सभी लेन-देन देखें</string>
+    <string name="more_split_options">अन्य बंटवारा विकल्प</string>
+    <string name="settled_confirmed_by_both">निपटान पूर्ण (दोनों द्वारा सत्यापित)</string>
+    <string name="privacy_policy_title">गोपनीयता नीति</string>
+    <string name="terms_conditions_title">नियम और शर्तें</string>
+    <string name="authors_credits_title">निर्माता और श्रेय</string>
+    <string name="author_ayush_name">आयुष मिश्रा</string>
+    <string name="author_sunaina_name">सुनैना बंसल</string>
+    <string name="author_rohan_name">रोहन कुमार</string>
+</resources>

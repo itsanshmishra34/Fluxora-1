@@ -1,0 +1,427 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidPhoneId(phone) {
+      return phone is string && phone.size() >= 8 && phone.size() <= 16 && phone.matches('^\\+[1-9][0-9]{6,14}$');
+    }
+
+    function isValidMinorAmount(amount) {
+      return amount is int && amount >= 1 && amount <= 100000000000;
+    }
+
+    function isValidTimestampField(ts) {
+      return ts is timestamp && ts <= request.time;
+    }
+
+    function isValidUserProfile(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.displayName is string && data.displayName.size() >= 1 && data.displayName.size() <= 100 &&
+             (!('email' in data) || data.email == null || (data.email is string && data.email.size() <= 200)) &&
+             (!('verifiedPhone' in data) || data.verifiedPhone == null || (data.verifiedPhone is string && data.verifiedPhone.size() <= 20)) &&
+             (!('upiVpa' in data) || data.upiVpa == null || (data.upiVpa is string && data.upiVpa.size() <= 100)) &&
+             isValidTimestampField(data.createdAt) &&
+             isValidTimestampField(data.updatedAt);
+    }
+
+    function isValidPhoneOwnership(data, phoneId) {
+      return data.phoneE164 is string && data.phoneE164 == phoneId &&
+             isValidPhoneId(data.phoneE164) &&
+             data.ownerUid is string && data.ownerUid == request.auth.uid &&
+             (!('displayName' in data) || data.displayName == null || (data.displayName is string && data.displayName.size() <= 100)) &&
+             isValidTimestampField(data.createdAt) &&
+             isValidTimestampField(data.updatedAt);
+    }
+
+    function isValidTransaction(data, userId) {
+      return data.userId is string && data.userId == userId && data.userId == request.auth.uid &&
+             data.title is string && data.title.size() >= 1 && data.title.size() <= 160 &&
+             isValidMinorAmount(data.amountMinor) &&
+             data.type is string && (data.type == 'INCOME' || data.type == 'EXPENSE') &&
+             data.categoryId is string && data.categoryId.size() >= 1 && data.categoryId.size() <= 80 &&
+             data.categoryName is string && data.categoryName.size() >= 1 && data.categoryName.size() <= 80 &&
+             data.timestampMillis is int && data.timestampMillis > 0 &&
+             (!('notes' in data) || data.notes == null || (data.notes is string && data.notes.size() <= 500)) &&
+             (!('recurringBillId' in data) || data.recurringBillId == null || (data.recurringBillId is string && data.recurringBillId.size() <= 128)) &&
+             isValidTimestampField(data.createdAt) &&
+             isValidTimestampField(data.updatedAt);
+    }
+
+    function isValidCategory(data, userId) {
+      return data.userId is string && data.userId == userId && data.userId == request.auth.uid &&
+             data.name is string && data.name.size() >= 1 && data.name.size() <= 60 &&
+             data.normalizedName is string && data.normalizedName.size() >= 1 && data.normalizedName.size() <= 60 &&
+             data.iconName is string && data.iconName.size() >= 1 && data.iconName.size() <= 60 &&
+             data.colorHex is string && data.colorHex.size() >= 4 && data.colorHex.size() <= 16 &&
+             data.isDefault is bool &&
+             isValidTimestampField(data.createdAt) &&
+             isValidTimestampField(data.updatedAt);
+    }
+
+    function isValidBudget(data, userId) {
+      return data.userId is string && data.userId == userId && data.userId == request.auth.uid &&
+             data.categoryId is string && data.categoryId.size() >= 1 && data.categoryId.size() <= 80 &&
+             data.categoryName is string && data.categoryName.size() >= 1 && data.categoryName.size() <= 80 &&
+             data.monthKey is string && data.monthKey.size() == 7 &&
+             isValidMinorAmount(data.limitMinor) &&
+             data.alert80Triggered is bool &&
+             data.alert100Triggered is bool &&
+             isValidTimestampField(data.createdAt) &&
+             isValidTimestampField(data.updatedAt);
+    }
+
+    function isValidSavingsGoal(data, userId) {
+      return data.userId is string && data.userId == userId && data.userId == request.auth.uid &&
+             data.title is string && data.title.size() >= 1 && data.title.size() <= 120 &&
+             isValidMinorAmount(data.targetMinor) &&
+             data.savedMinor is int && data.savedMinor >= 0 && data.savedMinor <= 100000000000 &&
+             data.targetDateMillis is int && data.targetDateMillis > 0 &&
+             data.highestMilestoneNotified is int &&
+             (data.highestMilestoneNotified == 0 || data.highestMilestoneNotified == 25 || data.highestMilestoneNotified == 50 || data.highestMilestoneNotified == 75 || data.highestMilestoneNotified == 100) &&
+             isValidTimestampField(data.createdAt) &&
+             isValidTimestampField(data.updatedAt);
+    }
+
+    function isValidRecurringBill(data, userId) {
+      return data.userId is string && data.userId == userId && data.userId == request.auth.uid &&
+             data.title is string && data.title.size() >= 1 && data.title.size() <= 120 &&
+             isValidMinorAmount(data.amountMinor) &&
+             data.categoryId is string && data.categoryId.size() >= 1 && data.categoryId.size() <= 80 &&
+             data.categoryName is string && data.categoryName.size() >= 1 && data.categoryName.size() <= 80 &&
+             data.frequency is string && (data.frequency == 'WEEKLY' || data.frequency == 'MONTHLY' || data.frequency == 'YEARLY') &&
+             data.nextDueDateMillis is int && data.nextDueDateMillis > 0 &&
+             data.lastPaidAtMillis is int && data.lastPaidAtMillis >= 0 &&
+             isValidTimestampField(data.createdAt) &&
+             isValidTimestampField(data.updatedAt);
+    }
+
+    function isValidHouseholdMember(data, userId) {
+      return data.userId is string && data.userId == userId && data.userId == request.auth.uid &&
+             data.memberUid is string && data.memberUid.size() >= 1 && data.memberUid.size() <= 128 &&
+             data.name is string && data.name.size() >= 1 && data.name.size() <= 100 &&
+             isValidPhoneId(data.phoneE164) &&
+             (!('upiVpa' in data) || data.upiVpa == null || (data.upiVpa is string && data.upiVpa.size() <= 100)) &&
+             isValidTimestampField(data.createdAt) &&
+             isValidTimestampField(data.updatedAt);
+    }
+
+    function isValidSharedExpense(data, userId) {
+      return data.userId is string && data.userId == userId && data.userId == request.auth.uid &&
+             data.title is string && data.title.size() >= 1 && data.title.size() <= 160 &&
+             isValidMinorAmount(data.totalAmountMinor) &&
+             data.paidByMemberId is string && data.paidByMemberId.size() >= 1 && data.paidByMemberId.size() <= 128 &&
+             data.paidByName is string && data.paidByName.size() >= 1 && data.paidByName.size() <= 100 &&
+             data.splitMethod is string &&
+             (data.splitMethod == 'EQUAL' || data.splitMethod == 'EXACT' || data.splitMethod == 'PERCENTAGE' || data.splitMethod == 'SHARES') &&
+             data.participantIds is string && data.participantIds.size() >= 1 && data.participantIds.size() <= 1000 &&
+             data.participantNames is string && data.participantNames.size() >= 1 && data.participantNames.size() <= 1000 &&
+             data.participantSharesMinor is string && data.participantSharesMinor.size() >= 1 && data.participantSharesMinor.size() <= 1000 &&
+             data.participantSettledFlags is string && data.participantSettledFlags.size() >= 1 && data.participantSettledFlags.size() <= 500 &&
+             data.isFullySettled is bool &&
+             isValidTimestampField(data.createdAt) &&
+             isValidTimestampField(data.updatedAt);
+    }
+
+    function isValidConnectionRequest(data) {
+      return data.senderUid is string && data.senderUid.size() >= 1 && data.senderUid.size() <= 128 &&
+             data.senderName is string && data.senderName.size() >= 1 && data.senderName.size() <= 100 &&
+             isValidPhoneId(data.senderPhone) &&
+             (!('senderUpiVpa' in data) || data.senderUpiVpa == null || (data.senderUpiVpa is string && data.senderUpiVpa.size() <= 100)) &&
+             data.recipientUid is string && data.recipientUid.size() >= 1 && data.recipientUid.size() <= 128 &&
+             data.recipientName is string && data.recipientName.size() >= 1 && data.recipientName.size() <= 100 &&
+             isValidPhoneId(data.recipientPhone) &&
+             data.senderUid != data.recipientUid &&
+             data.senderPhone != data.recipientPhone &&
+             data.status is string && (data.status == 'PENDING' || data.status == 'ACCEPTED' || data.status == 'DECLINED') &&
+             isValidTimestampField(data.createdAt) &&
+             isValidTimestampField(data.updatedAt);
+    }
+
+    function isValidNotification(data, userId) {
+      return data.userId is string && data.userId == userId && data.userId == request.auth.uid &&
+             data.category is string &&
+             (data.category == 'BUDGET' || data.category == 'BILL' || data.category == 'SAVINGS' || data.category == 'ROOMMATE' || data.category == 'INSIGHT') &&
+             data.title is string && data.title.size() >= 1 && data.title.size() <= 160 &&
+             data.message is string && data.message.size() >= 1 && data.message.size() <= 600 &&
+             data.relatedId is string && data.relatedId.size() >= 1 && data.relatedId.size() <= 160 &&
+             data.isRead is bool &&
+             data.timestampMillis is int && data.timestampMillis > 0 &&
+             isValidTimestampField(data.createdAt) &&
+             isValidTimestampField(data.updatedAt);
+    }
+
+    // 1. User Profile
+    match /users/{userId} {
+      allow get: if isOwner(userId) && isValidId(userId);
+      allow list: if isOwner(userId);
+
+      allow create: if isOwner(userId) &&
+                       isValidId(userId) &&
+                       incoming().keys().hasAll(['userId', 'displayName', 'createdAt', 'updatedAt']) &&
+                       incoming().keys().hasOnly(['userId', 'displayName', 'email', 'verifiedPhone', 'upiVpa', 'createdAt', 'updatedAt']) &&
+                       isValidUserProfile(incoming());
+
+      allow update: if isOwner(userId) &&
+                       isValidId(userId) &&
+                       isValidUserProfile(incoming()) &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt &&
+                       incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'email', 'verifiedPhone', 'upiVpa', 'updatedAt']);
+
+      allow delete: if isOwner(userId) && isValidId(userId);
+
+      // 2. Transactions
+      match /transactions/{transactionId} {
+        allow get: if isOwner(userId) && isValidId(transactionId);
+        allow list: if isOwner(userId) && existing().userId == request.auth.uid;
+
+        allow create: if isOwner(userId) &&
+                         isValidId(transactionId) &&
+                         incoming().keys().hasAll(['userId', 'title', 'amountMinor', 'type', 'categoryId', 'categoryName', 'timestampMillis', 'createdAt', 'updatedAt']) &&
+                         incoming().keys().hasOnly(['userId', 'title', 'amountMinor', 'type', 'categoryId', 'categoryName', 'timestampMillis', 'notes', 'recurringBillId', 'createdAt', 'updatedAt']) &&
+                         isValidTransaction(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(transactionId) &&
+                         isValidTransaction(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly(['title', 'amountMinor', 'type', 'categoryId', 'categoryName', 'timestampMillis', 'notes', 'updatedAt']);
+
+        allow delete: if isOwner(userId) && isValidId(transactionId);
+      }
+
+      // 3. Categories
+      match /categories/{categoryId} {
+        allow get: if isOwner(userId) && isValidId(categoryId);
+        allow list: if isOwner(userId) && existing().userId == request.auth.uid;
+
+        allow create: if isOwner(userId) &&
+                         isValidId(categoryId) &&
+                         incoming().keys().hasAll(['userId', 'name', 'normalizedName', 'iconName', 'colorHex', 'isDefault', 'createdAt', 'updatedAt']) &&
+                         incoming().keys().hasOnly(['userId', 'name', 'normalizedName', 'iconName', 'colorHex', 'isDefault', 'createdAt', 'updatedAt']) &&
+                         isValidCategory(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(categoryId) &&
+                         isValidCategory(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly(['name', 'normalizedName', 'iconName', 'colorHex', 'updatedAt']);
+
+        allow delete: if isOwner(userId) && isValidId(categoryId);
+      }
+
+      // 4. Budgets
+      match /budgets/{budgetId} {
+        allow get: if isOwner(userId) && isValidId(budgetId);
+        allow list: if isOwner(userId) && existing().userId == request.auth.uid;
+
+        allow create: if isOwner(userId) &&
+                         isValidId(budgetId) &&
+                         incoming().keys().hasAll(['userId', 'categoryId', 'categoryName', 'monthKey', 'limitMinor', 'alert80Triggered', 'alert100Triggered', 'createdAt', 'updatedAt']) &&
+                         incoming().keys().hasOnly(['userId', 'categoryId', 'categoryName', 'monthKey', 'limitMinor', 'alert80Triggered', 'alert100Triggered', 'createdAt', 'updatedAt']) &&
+                         isValidBudget(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(budgetId) &&
+                         isValidBudget(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly(['limitMinor', 'alert80Triggered', 'alert100Triggered', 'updatedAt']);
+
+        allow delete: if isOwner(userId) && isValidId(budgetId);
+      }
+
+      // 5. Savings Goals
+      match /savings_goals/{goalId} {
+        allow get: if isOwner(userId) && isValidId(goalId);
+        allow list: if isOwner(userId) && existing().userId == request.auth.uid;
+
+        allow create: if isOwner(userId) &&
+                         isValidId(goalId) &&
+                         incoming().keys().hasAll(['userId', 'title', 'targetMinor', 'savedMinor', 'targetDateMillis', 'highestMilestoneNotified', 'createdAt', 'updatedAt']) &&
+                         incoming().keys().hasOnly(['userId', 'title', 'targetMinor', 'savedMinor', 'targetDateMillis', 'highestMilestoneNotified', 'createdAt', 'updatedAt']) &&
+                         isValidSavingsGoal(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(goalId) &&
+                         isValidSavingsGoal(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly(['title', 'targetMinor', 'savedMinor', 'targetDateMillis', 'highestMilestoneNotified', 'updatedAt']);
+
+        allow delete: if isOwner(userId) && isValidId(goalId);
+      }
+
+      // 6. Recurring Bills
+      match /recurring_bills/{billId} {
+        allow get: if isOwner(userId) && isValidId(billId);
+        allow list: if isOwner(userId) && existing().userId == request.auth.uid;
+
+        allow create: if isOwner(userId) &&
+                         isValidId(billId) &&
+                         incoming().keys().hasAll(['userId', 'title', 'amountMinor', 'categoryId', 'categoryName', 'frequency', 'nextDueDateMillis', 'lastPaidAtMillis', 'createdAt', 'updatedAt']) &&
+                         incoming().keys().hasOnly(['userId', 'title', 'amountMinor', 'categoryId', 'categoryName', 'frequency', 'nextDueDateMillis', 'lastPaidAtMillis', 'createdAt', 'updatedAt']) &&
+                         isValidRecurringBill(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(billId) &&
+                         isValidRecurringBill(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly(['title', 'amountMinor', 'categoryId', 'categoryName', 'frequency', 'nextDueDateMillis', 'lastPaidAtMillis', 'updatedAt']);
+
+        allow delete: if isOwner(userId) && isValidId(billId);
+      }
+
+      // 7. Household Members
+      match /household_members/{memberId} {
+        allow get: if isOwner(userId) && isValidId(memberId);
+        allow list: if isOwner(userId) && existing().userId == request.auth.uid;
+
+        allow create: if isOwner(userId) &&
+                         isValidId(memberId) &&
+                         incoming().keys().hasAll(['userId', 'memberUid', 'name', 'phoneE164', 'createdAt', 'updatedAt']) &&
+                         incoming().keys().hasOnly(['userId', 'memberUid', 'name', 'phoneE164', 'upiVpa', 'createdAt', 'updatedAt']) &&
+                         isValidHouseholdMember(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(memberId) &&
+                         isValidHouseholdMember(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly(['name', 'upiVpa', 'updatedAt']);
+
+        allow delete: if isOwner(userId) && isValidId(memberId);
+      }
+
+      // 8. Shared Expenses
+      match /shared_expenses/{expenseId} {
+        allow get: if isOwner(userId) && isValidId(expenseId);
+        allow list: if isOwner(userId) && existing().userId == request.auth.uid;
+
+        allow create: if isOwner(userId) &&
+                         isValidId(expenseId) &&
+                         incoming().keys().hasAll(['userId', 'title', 'totalAmountMinor', 'paidByMemberId', 'paidByName', 'splitMethod', 'participantIds', 'participantNames', 'participantSharesMinor', 'participantSettledFlags', 'isFullySettled', 'createdAt', 'updatedAt']) &&
+                         incoming().keys().hasOnly(['userId', 'title', 'totalAmountMinor', 'paidByMemberId', 'paidByName', 'splitMethod', 'participantIds', 'participantNames', 'participantSharesMinor', 'participantSettledFlags', 'isFullySettled', 'createdAt', 'updatedAt']) &&
+                         isValidSharedExpense(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(expenseId) &&
+                         isValidSharedExpense(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly(['participantSettledFlags', 'isFullySettled', 'updatedAt']);
+
+        allow delete: if isOwner(userId) && isValidId(expenseId);
+      }
+
+      // 9. Notifications
+      match /notifications/{notificationId} {
+        allow get: if isOwner(userId) && isValidId(notificationId);
+        allow list: if isOwner(userId) && existing().userId == request.auth.uid;
+
+        allow create: if isOwner(userId) &&
+                         isValidId(notificationId) &&
+                         incoming().keys().hasAll(['userId', 'category', 'title', 'message', 'relatedId', 'isRead', 'timestampMillis', 'createdAt', 'updatedAt']) &&
+                         incoming().keys().hasOnly(['userId', 'category', 'title', 'message', 'relatedId', 'isRead', 'timestampMillis', 'createdAt', 'updatedAt']) &&
+                         isValidNotification(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         isValidId(notificationId) &&
+                         isValidNotification(incoming(), userId) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly(['isRead', 'updatedAt']);
+
+        allow delete: if isOwner(userId) && isValidId(notificationId);
+      }
+    }
+
+    // 10. Exclusive E.164 Phone Ownership Registry
+    match /phone_registry/{phoneE164} {
+      allow get: if isSignedIn() && isValidPhoneId(phoneE164);
+      allow list: if isSignedIn() && existing().ownerUid == request.auth.uid;
+
+      allow create: if isSignedIn() &&
+                       isValidPhoneId(phoneE164) &&
+                       incoming().keys().hasAll(['phoneE164', 'ownerUid', 'createdAt', 'updatedAt']) &&
+                       incoming().keys().hasOnly(['phoneE164', 'ownerUid', 'displayName', 'createdAt', 'updatedAt']) &&
+                       isValidPhoneOwnership(incoming(), phoneE164);
+
+      allow update: if isSignedIn() &&
+                       isValidPhoneId(phoneE164) &&
+                       isValidPhoneOwnership(incoming(), phoneE164) &&
+                       existing().ownerUid == request.auth.uid &&
+                       incoming().ownerUid == existing().ownerUid &&
+                       incoming().phoneE164 == existing().phoneE164 &&
+                       incoming().createdAt == existing().createdAt &&
+                       incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'updatedAt']);
+
+      allow delete: if isSignedIn() && isValidPhoneId(phoneE164) && existing().ownerUid == request.auth.uid;
+    }
+
+    // 11. Bidirectional Roommate Connection Requests
+    match /connection_requests/{requestId} {
+      allow get: if isSignedIn() &&
+                    isValidId(requestId) &&
+                    (existing().senderUid == request.auth.uid || existing().recipientUid == request.auth.uid);
+
+      allow list: if isSignedIn() &&
+                     (existing().senderUid == request.auth.uid || existing().recipientUid == request.auth.uid);
+
+      // Only the authenticated sender can create a PENDING request, never to themselves
+      allow create: if isSignedIn() &&
+                       isValidId(requestId) &&
+                       incoming().keys().hasAll(['senderUid', 'senderName', 'senderPhone', 'recipientUid', 'recipientName', 'recipientPhone', 'status', 'createdAt', 'updatedAt']) &&
+                       incoming().keys().hasOnly(['senderUid', 'senderName', 'senderPhone', 'senderUpiVpa', 'recipientUid', 'recipientName', 'recipientPhone', 'status', 'createdAt', 'updatedAt']) &&
+                       incoming().senderUid == request.auth.uid &&
+                       incoming().status == 'PENDING' &&
+                       isValidConnectionRequest(incoming());
+
+      // Action-Based Update: ONLY the authorized recipient can transition PENDING -> ACCEPTED or DECLINED
+      allow update: if isSignedIn() &&
+                       isValidId(requestId) &&
+                       isValidConnectionRequest(incoming()) &&
+                       existing().status == 'PENDING' &&
+                       existing().recipientUid == request.auth.uid &&
+                       (incoming().status == 'ACCEPTED' || incoming().status == 'DECLINED') &&
+                       incoming().senderUid == existing().senderUid &&
+                       incoming().recipientUid == existing().recipientUid &&
+                       incoming().senderPhone == existing().senderPhone &&
+                       incoming().recipientPhone == existing().recipientPhone &&
+                       incoming().createdAt == existing().createdAt &&
+                       incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt']);
+
+      allow delete: if isSignedIn() &&
+                       isValidId(requestId) &&
+                       existing().senderUid == request.auth.uid &&
+                       existing().status == 'PENDING';
+    }
+  }
+}
